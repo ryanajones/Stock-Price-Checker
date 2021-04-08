@@ -3,10 +3,31 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
-
+const mongoose = require('mongoose');
 const apiRoutes = require('./routes/api.js');
 const fccTestingRoutes = require('./routes/fcctesting.js');
 const runner = require('./test-runner');
+
+// Mongoose connect
+mongoose.connect(process.env.DB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.on('error', (err) => {
+  console.error(err);
+});
+db.once('open', () => {
+  console.log('Connected to database');
+});
+
+// Mongoose disconnect
+process.on('SIGINT', () => {
+  db.close(() => {
+    console.log(`Closing connection to ${dbName}`);
+    process.exit(0);
+  });
+});
 
 const app = express();
 
@@ -18,7 +39,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Helmet secrutiy middleware
-/* app.use(
+app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ["'self'"],
@@ -31,7 +52,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
     },
   })
 );
- */
+
 // Index page (static HTML)
 app.route('/').get(function (req, res) {
   res.sendFile(`${process.cwd()}/views/index.html`);
