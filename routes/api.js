@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 const { json } = require('body-parser');
 const fetch = require('node-fetch');
 const mongoose = require('mongoose');
@@ -9,23 +10,20 @@ const { Schema } = mongoose;
 
 const stockSchema = new Schema({
   symbol: String,
-  price: Number,
-  likes: Number,
+  likes: { type: Number, default: 0 },
 });
 
 const Stocks = mongoose.model('stocks', stockSchema);
 
 // Database retrieve and update
-const stockDatabase = (stockSymbol) => {
-  let { symbol, price, likes } = stockSymbol;
-
+const saveStock = (symbol, like) => {
+  let likes = like;
   return Stocks.findOne({ symbol }).then((res) => {
     if (!res) {
-      const newStock = new Stocks({ symbol, price, likes });
+      const newStock = new Stocks({ symbol, likes });
       return newStock.save();
     }
 
-    res.price = price;
     if (likes) {
       likes = res.likes + likes;
       res.likes = likes;
@@ -34,38 +32,93 @@ const stockDatabase = (stockSymbol) => {
   });
 };
 
+// Fetch stock price from proxy
+const getStockPrice = (stockSymbol) =>
+  fetch(
+    `https://stock-price-checker-proxy.freecodecamp.rocks/v1/stock/${stockSymbol}/quote`
+  )
+    .then((response) => response.json())
+    .then((data) => ({
+      stock: data.symbol,
+      price: data.latestPrice,
+    }));
+
+const parseData = (data) => {
+  let stockData = [];
+  let i = 0;
+  while (i < data.length) {
+    const stock = {
+      stock: data[i + 1].stock,
+      price: data[i + 1].price,
+    };
+    stockData.push(stock);
+    i += 2;
+  }
+
+  if (stockData.length === 2) {
+    stockData[0].rel_likes = data[0].likes - data[2].likes;
+    stockData[1].rel_likes = data[2].likes - data[0].likes;
+  } else {
+    stockData = stockData[0];
+    stockData.likes = data[0].likes;
+  }
+  return { stockData };
+  /*  // Handle return for single stock
+  if (data.length === 2) {
+    return {
+      stockData: {
+        stock: data[1].stock,
+        price: data[1].price,
+        likes: data[0].likes,
+      },
+    };
+  }
+  // Handle return for two stocks
+  return {
+    stockData: [
+      {
+        stock: data[1].stock,
+        price: data[1].price,
+        rel_likes: data[0].likes - data[2].likes,
+      },
+      {
+        stock: data[3].stock,
+        price: data[3].price,
+        rel_likes: data[2].likes - data[0].likes,
+      },
+    ],
+  }; */
+};
+
 module.exports = function (app) {
   app.route('/api/stock-prices').get(function (req, res) {
     let { stock, like } = req.query;
-    console.log(stock, like);
-    // Fetch stock price from proxy
-    const getStockPrice = (stockSymbol) =>
-      fetch(
-        `https://stock-price-checker-proxy.freecodecamp.rocks/v1/stock/${stockSymbol}/quote`
-      )
-        .then((response) => response.json())
-        .then((data) => ({
-          stockData: { stock: data.symbol, price: data.latestPrice },
-        }));
 
     // Handle main operation
-    const mainOperation = async () => {
-      if (like === 'true') {
-        like = 1;
-      }
-      if (stock && !Array.isArray(stock)) {
-        const stockInfo = await getStockPrice(stock);
-        const obj = {
-          symbol: stockInfo.stockData.stock,
-          price: stockInfo.stockData.price,
-          likes: like,
-        };
-        const st = await stockDatabase(obj);
-        const { symbol, price, likes } = st;
-        res.json({ stockData: { stock: symbol, price, likes } });
-      }
-    };
-    mainOperation();
-    // Handle if there are one or two stocks
+
+    console.log(req.ip);
+    if (like === 'true') {
+      like = 1;
+    }
+    if (!Array.isArray(stock)) {
+      stock = [stock];
+    }
+
+    const promises = [];
+    stock.forEach((symbol) => {
+      promises.push(saveStock(symbol, like));
+
+      promises.push(getStockPrice(symbol));
+    });
+
+    Promise.all(promises)
+      .then((data) => {
+        const parsedData = parseData(data);
+        res.json(parsedData);
+      })
+      .catch((err) => {
+        if (err) return console.log(err);
+        res.send(err);
+      });
   });
 };
