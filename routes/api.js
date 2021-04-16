@@ -10,27 +10,23 @@ const { Schema } = mongoose;
 
 const stockSchema = new Schema({
   symbol: String,
-  likes: { type: Number, default: 0 },
+  likes: { type: [String], default: [] },
 });
 
 const Stocks = mongoose.model('stocks', stockSchema);
 
 // Database retrieve and update
-const saveStock = (symbol, like) => {
-  let likes = like;
-  return Stocks.findOne({ symbol }).then((res) => {
+const saveStock = (symbol, like, ip) =>
+  Stocks.findOne({ symbol }).then((res) => {
     if (!res) {
-      const newStock = new Stocks({ symbol, likes });
+      const newStock = new Stocks({ symbol, likes: like ? [ip] : [] });
       return newStock.save();
     }
-
-    if (likes) {
-      likes = res.likes + likes;
-      res.likes = likes;
+    if (like && res.likes.indexOf(ip) === -1) {
+      res.likes.push(ip);
     }
     return res.save();
   });
-};
 
 // Fetch stock price from proxy
 const getStockPrice = (stockSymbol) =>
@@ -43,51 +39,30 @@ const getStockPrice = (stockSymbol) =>
       price: data.latestPrice,
     }));
 
+// Parse data for json return
 const parseData = (data) => {
   let stockData = [];
   let i = 0;
+  const likes = [];
   while (i < data.length) {
     const stock = {
       stock: data[i + 1].stock,
       price: data[i + 1].price,
     };
+    likes.push(data[i].likes.length);
     stockData.push(stock);
     i += 2;
   }
 
+  // Decipher if one or two stocks will be returned
   if (stockData.length === 2) {
-    stockData[0].rel_likes = data[0].likes - data[2].likes;
-    stockData[1].rel_likes = data[2].likes - data[0].likes;
+    stockData[0].rel_likes = likes[0] - likes[1];
+    stockData[1].rel_likes = likes[1] - likes[0];
   } else {
     stockData = stockData[0];
-    stockData.likes = data[0].likes;
+    stockData.likes = likes[0];
   }
   return { stockData };
-  /*  // Handle return for single stock
-  if (data.length === 2) {
-    return {
-      stockData: {
-        stock: data[1].stock,
-        price: data[1].price,
-        likes: data[0].likes,
-      },
-    };
-  }
-  // Handle return for two stocks
-  return {
-    stockData: [
-      {
-        stock: data[1].stock,
-        price: data[1].price,
-        rel_likes: data[0].likes - data[2].likes,
-      },
-      {
-        stock: data[3].stock,
-        price: data[3].price,
-        rel_likes: data[2].likes - data[0].likes,
-      },
-    ],
-  }; */
 };
 
 module.exports = function (app) {
@@ -95,18 +70,13 @@ module.exports = function (app) {
     let { stock, like } = req.query;
 
     // Handle main operation
-
-    console.log(req.ip);
-    if (like === 'true') {
-      like = 1;
-    }
     if (!Array.isArray(stock)) {
       stock = [stock];
     }
 
     const promises = [];
     stock.forEach((symbol) => {
-      promises.push(saveStock(symbol, like));
+      promises.push(saveStock(symbol, like, req.ip));
 
       promises.push(getStockPrice(symbol));
     });
