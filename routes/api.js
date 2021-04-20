@@ -76,7 +76,7 @@ module.exports = function (app) {
 
     const promises = [];
     stock.forEach((symbol) => {
-      promises.push(saveStock(symbol, like, req.ip));
+      promises.push(saveStock(symbol.toLowerCase(), like, req.ip));
 
       promises.push(getStockPrice(symbol));
     });
