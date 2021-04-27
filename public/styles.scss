@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif&display=swap");
+// Variables
+:root {
+  --dark-blue: #253655;
+  --blue: #37517e;
+  --light-blue: #006e9a;
+  --white: #ffffff;
+  --accent-green: #28b862;
+}
+
+// Styles
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+  font-family: "Poppins";
+}
+
+body {
+  header {
+    height: 7rem;
+    border-bottom: 1px solid #000;
+    h1 {
+      font-size: 3.5rem;
+    }
+  }
+  main {
+    flex-direction: column;
+    margin-top: 2rem;
+    h2 {
+      margin: 2rem 0;
+      font-size: 2.5rem;
+      align-self: start;
+    }
+    #testui {
+      width: 60rem;
+      h3 {
+        margin: 1.5rem;
+        font-size: 1.5rem;
+      }
+      form {
+        width: 20rem;
+        input[type="text"] {
+          width: 10rem;
+          margin-bottom: 1.5rem;
+          padding: 0.2rem 0.7rem;
+        }
+        span {
+          font-size: 1.2rem;
+        }
+        button {
+          margin-bottom: 2rem;
+          padding: 0.2rem 0.7rem;
+        }
+      }
+      #testForm2 {
+        div {
+          input[type="checkbox"] {
+            position: relative;
+            top: 0.2rem;
+            left: 1rem;
+          }
+          span {
+            position: relative;
+            top: 0.01rem;
+            left: 1.3rem;
+            bottom: 0.2rem;
+          }
+        }
+
+        button {
+          margin-top: 0.6rem;
+        }
+      }
+      #testForm {
+        div {
+          margin-bottom: 1.2rem;
+          padding: 0.2rem 0.7rem;
+          input[type="checkbox"] {
+            margin-bottom: 0.5rem;
+          }
+          span {
+            position: relative;
+            left: 0.4rem;
+            bottom: 0.2rem;
+          }
+        }
+      }
+    }
+    #jsonResult {
+      height: 6rem;
+      width: 70%;
+      margin-top: 1rem;
+      padding: 2rem 0;
+      text-align: center;
+    }
+    #userstories {
+      width: 60rem;
+      margin-top: 4rem;
+      // h3 {
+      //   margin: 2rem 0;
+      //   font-size: 2rem;
+      // }
+      h3:last-child {
+        margin-top: 10rem;
+      }
+      code {
+        display: inline-block;
+        margin: 0.5rem;
+        padding-left: 7rem;
+        font-size: 1.3rem;
+        letter-spacing: 0.07rem;
+      }
+    }
+  }
+}
+
+// Utilities
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
