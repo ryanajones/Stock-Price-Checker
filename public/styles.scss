@@ -1,11 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=PT+Serif&display=swap");
 // Variables
 :root {
   --dark-blue: #253655;
   --blue: #37517e;
-  --light-blue: #006e9a;
+  --light-blue: #00b9ff;
   --white: #ffffff;
   --accent-green: #28b862;
 }
@@ -20,31 +17,43 @@
 }
 
 html {
+  height: 140vh;
+  color: var(--white);
   font-size: 10px;
-  font-family: "Poppins";
+  font-family: Helvetica;
 }
 
 body {
+  background-color: var(--blue);
   header {
     height: 7rem;
-    border-bottom: 1px solid #000;
+    background-color: var(--dark-blue);
     h1 {
       font-size: 3.5rem;
+      letter-spacing: 0.2rem;
+      span {
+        color: var(--light-blue);
+      }
     }
   }
   main {
     flex-direction: column;
-    margin-top: 2rem;
+    margin-top: 4rem;
     h2 {
-      margin: 2rem 0;
-      font-size: 2.5rem;
       align-self: start;
+      margin: 2rem 0 3.2rem 0;
+      font-size: 3.5rem;
+      letter-spacing: 0.07rem;
+      span {
+        color: var(--light-blue);
+      }
     }
     #testui {
-      width: 60rem;
-      h3 {
-        margin: 1.5rem;
-        font-size: 1.5rem;
+      width: 45%;
+      h4 {
+        margin: 1.5rem 0 3rem 1.5rem;
+        font-size: 2.7rem;
+        font-weight: normal;
       }
       form {
         width: 20rem;
@@ -59,6 +68,11 @@ body {
         button {
           margin-bottom: 2rem;
           padding: 0.2rem 0.7rem;
+          border: none;
+          border: 1px solid #2ed06e;
+
+          color: inherit;
+          background-color: var(--accent-green);
         }
       }
       #testForm2 {
@@ -75,7 +89,6 @@ body {
             bottom: 0.2rem;
           }
         }
-
         button {
           margin-top: 0.6rem;
         }
@@ -102,22 +115,27 @@ body {
       padding: 2rem 0;
       text-align: center;
     }
-    #userstories {
-      width: 60rem;
-      margin-top: 4rem;
-      // h3 {
-      //   margin: 2rem 0;
-      //   font-size: 2rem;
-      // }
-      h3:last-child {
-        margin-top: 10rem;
-      }
-      code {
-        display: inline-block;
-        margin: 0.5rem;
-        padding-left: 7rem;
-        font-size: 1.3rem;
-        letter-spacing: 0.07rem;
+    #userStoriesContainer {
+
+
+
+      #userstories {
+        width: 65%;
+        margin-top: 4rem;
+        h3 {
+          margin: 2rem 0;
+          font-size: 2rem;
+        }
+        h3:last-of-type {
+          margin-top: 10rem;
+        }
+        code {
+          display: inline-block;
+          margin: 0.5rem;
+          padding-left: 7rem;
+          font-size: 1.3rem;
+          letter-spacing: 0.07rem;
+        }
       }
     }
   }

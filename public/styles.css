@@ -1,10 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=PT+Serif&display=swap");
 :root {
   --dark-blue: #253655;
   --blue: #37517e;
-  --light-blue: #006e9a;
+  --light-blue: #00b9ff;
   --white: #ffffff;
   --accent-green: #28b862;
 }
@@ -19,17 +16,28 @@
 }
 
 html {
+  height: 140vh;
+  color: var(--white);
   font-size: 10px;
-  font-family: "Poppins";
+  font-family: Helvetica;
+}
+
+body {
+  background-color: var(--blue);
 }
 
 body header {
   height: 7rem;
-  border-bottom: 1px solid #000;
+  background-color: var(--dark-blue);
 }
 
 body header h1 {
   font-size: 3.5rem;
+  letter-spacing: 0.2rem;
+}
+
+body header h1 span {
+  color: var(--light-blue);
 }
 
 body main {
@@ -37,24 +45,30 @@ body main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-top: 2rem;
+  margin-top: 4rem;
 }
 
 body main h2 {
-  margin: 2rem 0;
-  font-size: 2.5rem;
   -ms-flex-item-align: start;
       -ms-grid-row-align: start;
       align-self: start;
+  margin: 2rem 0 3.2rem 0;
+  font-size: 3.5rem;
+  letter-spacing: 0.07rem;
+}
+
+body main h2 span {
+  color: var(--light-blue);
 }
 
 body main #testui {
-  width: 60rem;
+  width: 45%;
 }
 
-body main #testui h3 {
-  margin: 1.5rem;
-  font-size: 1.5rem;
+body main #testui h4 {
+  margin: 1.5rem 0 3rem 1.5rem;
+  font-size: 2.7rem;
+  font-weight: normal;
 }
 
 body main #testui form {
@@ -74,6 +88,10 @@ body main #testui form span {
 body main #testui form button {
   margin-bottom: 2rem;
   padding: 0.2rem 0.7rem;
+  border: none;
+  border: 1px solid #2ed06e;
+  color: inherit;
+  background-color: var(--accent-green);
 }
 
 body main #testui #testForm2 div input[type="checkbox"] {
@@ -116,16 +134,21 @@ body main #jsonResult {
   text-align: center;
 }
 
-body main #userstories {
-  width: 60rem;
+body main #userStoriesContainer #userstories {
+  width: 65%;
   margin-top: 4rem;
 }
 
-body main #userstories h3:last-child {
+body main #userStoriesContainer #userstories h3 {
+  margin: 2rem 0;
+  font-size: 2rem;
+}
+
+body main #userStoriesContainer #userstories h3:last-of-type {
   margin-top: 10rem;
 }
 
-body main #userstories code {
+body main #userStoriesContainer #userstories code {
   display: inline-block;
   margin: 0.5rem;
   padding-left: 7rem;
