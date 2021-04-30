@@ -24,10 +24,10 @@ html {
 }
 
 body {
-  background-color: var(--blue);
+  background-color: var(--dark-blue);
   header {
     height: 7rem;
-    background-color: var(--dark-blue);
+    background-color: var(--blue);
     h1 {
       font-size: 3.5rem;
       letter-spacing: 0.2rem;
@@ -39,101 +39,116 @@ body {
   main {
     flex-direction: column;
     margin-top: 4rem;
-    h2 {
-      align-self: start;
-      margin: 2rem 0 3.2rem 0;
-      font-size: 3.5rem;
-      letter-spacing: 0.07rem;
-      span {
-        color: var(--light-blue);
-      }
-    }
     #testui {
-      width: 45%;
-      h4 {
-        margin: 1.5rem 0 3rem 1.5rem;
+      width: 55%;
+      margin-bottom: 5rem;
+      padding: 4rem 6rem 7rem 6rem;
+      background-color: var(--blue);
+      border-radius: 5px;
+      box-shadow: 0 13px 10px rgba(0, 0, 0, 0.2);
+      h2 {
+        align-self: start;
+        margin: 2rem 0 5rem 0;
+        font-size: 3.5rem;
+        font-weight: 400;
+        letter-spacing: 0.07rem;
+        #h2-underline {
+          padding-bottom: 0.2rem;
+          border-bottom: 2px solid white;
+        }
+        span:last-of-type {
+          color: var(--light-blue);
+        }
+      }
+      h3 {
+        margin: 1.5rem 0 3.5rem 0rem;
         font-size: 2.7rem;
         font-weight: normal;
       }
       form {
         width: 20rem;
         input[type="text"] {
-          width: 10rem;
-          margin-bottom: 1.5rem;
-          padding: 0.2rem 0.7rem;
-        }
-        span {
-          font-size: 1.2rem;
-        }
-        button {
-          margin-bottom: 2rem;
-          padding: 0.2rem 0.7rem;
+          width: 14rem;
+          padding: 0.7rem 0.7rem;
           border: none;
-          border: 1px solid #2ed06e;
-
-          color: inherit;
-          background-color: var(--accent-green);
+          border-radius: 3px;
+          font-size: 1.5rem;
         }
-      }
-      #testForm2 {
-        div {
-          input[type="checkbox"] {
-            position: relative;
-            top: 0.2rem;
-            left: 1rem;
-          }
-          span {
-            position: relative;
-            top: 0.01rem;
-            left: 1.3rem;
-            bottom: 0.2rem;
-          }
+        input[type="text"]:focus {
+          outline: none;
         }
-        button {
-          margin-top: 0.6rem;
-        }
-      }
-      #testForm {
-        div {
+        .checkBox {
+          margin-top: -0.3rem;
           margin-bottom: 1.2rem;
           padding: 0.2rem 0.7rem;
           input[type="checkbox"] {
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
           }
           span {
             position: relative;
-            left: 0.4rem;
-            bottom: 0.2rem;
+            left: 0.6rem;
+            bottom: 0.16rem;
+            font-size: 1.4rem;
+            font-weight: 200;
+            letter-spacing: 0.04rem;
           }
+        }
+        button {
+          margin-bottom: 3rem;
+          padding: 0.6rem 1.2rem;
+          border: none;
+          border: 1px solid #2ed06e;
+          border-radius: 3px;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+          color: inherit;
+          background-color: var(--accent-green);
+          letter-spacing: 0.1rem;
+          cursor: pointer;
+        }
+        button:hover {
+          transform: scale(0.98);
+        }
+      }
+      #testForm2 {
+        margin-bottom: 3rem;
+        input[type="text"]:first-of-type {
+          margin-bottom: 2.5rem;
+        }
+      }
+      #testForm {
+        input[type="text"]:first-of-type {
+          margin-bottom: 0.9rem;
+        }
+        input[type="text"]:last-of-type {
+          margin-bottom: 2.5rem;
         }
       }
     }
     #jsonResult {
       height: 6rem;
       width: 70%;
-      margin-top: 1rem;
+      margin: 1rem 0 5rem 0;
       padding: 2rem 0;
+      font-size: 1.5rem;
       text-align: center;
     }
     #userStoriesContainer {
-
-
-
       #userstories {
         width: 65%;
         margin-top: 4rem;
-        h3 {
+        h4 {
           margin: 2rem 0;
           font-size: 2rem;
+          font-weight: normal;
         }
-        h3:last-of-type {
+        h4:last-of-type {
           margin-top: 10rem;
         }
         code {
           display: inline-block;
           margin: 0.5rem;
           padding-left: 7rem;
-          font-size: 1.3rem;
+          font-size: 1.5rem;
           letter-spacing: 0.07rem;
         }
       }

@@ -17,21 +17,21 @@
   </header>
   <main class="flex">
     <div class="flex-col" id='testui'>
-      <h2>Front-End<span>:</span></h2>
-      <h4>Get single price and total likes</h4>
+      <h2><span id="h2-underline">Front-End</span><span> :</span></h2>
+      <h3>Get Single Price and Total Likes</h3>
       <form id="testForm2" class="flex-col">
-        <div>
-          <input type="text" name="stock" placeholder="goog" required=''>
+        <input type="text" name="stock" placeholder="goog" required=''>
+        <div class="checkBox">
           <input type="checkbox" name="like" value=true> <span>Like?</span>
         </div>
         <button type="submit">Get Price!</button>
       </form>
-      <h4>Compare and get relative likes</h4>
+      <h3>Compare and Get Relative Likes</h3>
       <form id="testForm" class="flex-col">
         <input type="text" name="stock" placeholder="goog" required=''>
         <input type="text" name="stock" placeholder="msft" required=''>
-        <div>
-          <input type="checkbox" name="like" value=true> <span>Like both?</span><br>
+        <div class="checkBox">
+          <input type="checkbox" name="like" value=true> <span>Like Both?</span><br>
         </div>
         <button type="submit">Get Price!</button>
       </form>
@@ -39,12 +39,12 @@
     <code id='jsonResult'></code>
     <div class="flex" id="userStoriesContainer">
       <div id='userstories'>
-        <h3>Example usage:</h3>
+        <h4>Example Usage:</h4>
         <code>/api/stock-prices?stock=goog</code><br>
         <code>/api/stock-prices?stock=goog&amp;like=true</code><br>
         <code>/api/stock-prices?stock=goog&amp;stock=msft</code><br>
         <code>/api/stock-prices?stock=goog&amp;stock=msft&amp;like=true</code><br>
-        <h3>Example return:</h3>
+        <h4>Example Return:</h4>
         <code>{"stockData":{"stock":"GOOG","price":786.90,"likes":1}}</code><br>
         <code>{"stockData":[{"stock":"MSFT","price":62.30,"rel_likes":-1},</code>
         <code>{"stock":"GOOG","price":786.90,"rel_likes":1}]}</code>

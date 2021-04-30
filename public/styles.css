@@ -23,12 +23,12 @@ html {
 }
 
 body {
-  background-color: var(--blue);
+  background-color: var(--dark-blue);
 }
 
 body header {
   height: 7rem;
-  background-color: var(--dark-blue);
+  background-color: var(--blue);
 }
 
 body header h1 {
@@ -48,25 +48,37 @@ body main {
   margin-top: 4rem;
 }
 
-body main h2 {
+body main #testui {
+  width: 55%;
+  margin-bottom: 5rem;
+  padding: 4rem 6rem 7rem 6rem;
+  background-color: var(--blue);
+  border-radius: 5px;
+  -webkit-box-shadow: 0 13px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 13px 10px rgba(0, 0, 0, 0.2);
+}
+
+body main #testui h2 {
   -ms-flex-item-align: start;
       -ms-grid-row-align: start;
       align-self: start;
-  margin: 2rem 0 3.2rem 0;
+  margin: 2rem 0 5rem 0;
   font-size: 3.5rem;
+  font-weight: 400;
   letter-spacing: 0.07rem;
 }
 
-body main h2 span {
+body main #testui h2 #h2-underline {
+  padding-bottom: 0.2rem;
+  border-bottom: 2px solid white;
+}
+
+body main #testui h2 span:last-of-type {
   color: var(--light-blue);
 }
 
-body main #testui {
-  width: 45%;
-}
-
-body main #testui h4 {
-  margin: 1.5rem 0 3rem 1.5rem;
+body main #testui h3 {
+  margin: 1.5rem 0 3.5rem 0rem;
   font-size: 2.7rem;
   font-weight: normal;
 }
@@ -76,61 +88,77 @@ body main #testui form {
 }
 
 body main #testui form input[type="text"] {
-  width: 10rem;
-  margin-bottom: 1.5rem;
-  padding: 0.2rem 0.7rem;
-}
-
-body main #testui form span {
-  font-size: 1.2rem;
-}
-
-body main #testui form button {
-  margin-bottom: 2rem;
-  padding: 0.2rem 0.7rem;
+  width: 14rem;
+  padding: 0.7rem 0.7rem;
   border: none;
-  border: 1px solid #2ed06e;
-  color: inherit;
-  background-color: var(--accent-green);
+  border-radius: 3px;
+  font-size: 1.5rem;
 }
 
-body main #testui #testForm2 div input[type="checkbox"] {
-  position: relative;
-  top: 0.2rem;
-  left: 1rem;
+body main #testui form input[type="text"]:focus {
+  outline: none;
 }
 
-body main #testui #testForm2 div span {
-  position: relative;
-  top: 0.01rem;
-  left: 1.3rem;
-  bottom: 0.2rem;
-}
-
-body main #testui #testForm2 button {
-  margin-top: 0.6rem;
-}
-
-body main #testui #testForm div {
+body main #testui form .checkBox {
+  margin-top: -0.3rem;
   margin-bottom: 1.2rem;
   padding: 0.2rem 0.7rem;
 }
 
-body main #testui #testForm div input[type="checkbox"] {
-  margin-bottom: 0.5rem;
+body main #testui form .checkBox input[type="checkbox"] {
+  margin-bottom: 1rem;
 }
 
-body main #testui #testForm div span {
+body main #testui form .checkBox span {
   position: relative;
-  left: 0.4rem;
-  bottom: 0.2rem;
+  left: 0.6rem;
+  bottom: 0.16rem;
+  font-size: 1.4rem;
+  font-weight: 200;
+  letter-spacing: 0.04rem;
+}
+
+body main #testui form button {
+  margin-bottom: 3rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border: 1px solid #2ed06e;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  color: inherit;
+  background-color: var(--accent-green);
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+}
+
+body main #testui form button:hover {
+  -webkit-transform: scale(0.98);
+          transform: scale(0.98);
+}
+
+body main #testui #testForm2 {
+  margin-bottom: 3rem;
+}
+
+body main #testui #testForm2 input[type="text"]:first-of-type {
+  margin-bottom: 2.5rem;
+}
+
+body main #testui #testForm input[type="text"]:first-of-type {
+  margin-bottom: 0.9rem;
+}
+
+body main #testui #testForm input[type="text"]:last-of-type {
+  margin-bottom: 2.5rem;
 }
 
 body main #jsonResult {
   height: 6rem;
   width: 70%;
-  margin-top: 1rem;
+  margin: 1rem 0 5rem 0;
   padding: 2rem 0;
+  font-size: 1.5rem;
   text-align: center;
 }
 
@@ -139,12 +167,13 @@ body main #userStoriesContainer #userstories {
   margin-top: 4rem;
 }
 
-body main #userStoriesContainer #userstories h3 {
+body main #userStoriesContainer #userstories h4 {
   margin: 2rem 0;
   font-size: 2rem;
+  font-weight: normal;
 }
 
-body main #userStoriesContainer #userstories h3:last-of-type {
+body main #userStoriesContainer #userstories h4:last-of-type {
   margin-top: 10rem;
 }
 
@@ -152,7 +181,7 @@ body main #userStoriesContainer #userstories code {
   display: inline-block;
   margin: 0.5rem;
   padding-left: 7rem;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   letter-spacing: 0.07rem;
 }
 
