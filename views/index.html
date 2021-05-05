@@ -17,12 +17,12 @@
   </header>
   <main class="flex">
     <div class="flex-col" id='testui'>
-      <h2><span id="h2-underline">Front-End</span><span> :</span></h2>
       <h3>Get Single Price and Total Likes</h3>
       <form id="testForm2" class="flex-col">
         <input type="text" name="stock" placeholder="goog" required=''>
         <div class="checkBox">
-          <input type="checkbox" name="like" value=true> <span>Like?</span>
+          <input type="checkbox" id="like" name="like" value=true>
+          <label for="like">Like?</label>
         </div>
         <button type="submit">Get Price!</button>
       </form>
@@ -31,7 +31,8 @@
         <input type="text" name="stock" placeholder="goog" required=''>
         <input type="text" name="stock" placeholder="msft" required=''>
         <div class="checkBox">
-          <input type="checkbox" name="like" value=true> <span>Like Both?</span><br>
+          <input type="checkbox" id="likeBoth" name="like" value=true>
+          <label for="likeBoth">Like Both?</label>
         </div>
         <button type="submit">Get Price!</button>
       </form>
