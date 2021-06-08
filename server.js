@@ -49,7 +49,6 @@ app.use(
         'https://code.jquery.com/jquery-2.2.1.min.js',
       ],
       styleSrc: ["'self'", "'unsafe-inline'"],
-      fontSrc: ["'self'", 'https://fonts.googleapis.com'],
     },
   })
 );
@@ -83,7 +82,7 @@ app.listen(process.env.PORT || 3000, function () {
         console.log('Tests are not valid:');
         console.log(error);
       }
-    }, 9500);
+    }, 3500);
   }
 });
 
